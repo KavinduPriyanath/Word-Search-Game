@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c6f8aeb2053894babe5221835f05a0, type: 3}
+  m_Name: Puzzle_2
+  m_EditorClassIdentifier: 
+  timeInSeconds: 0
+  Columns: 6
+  Rows: 6
+  puzzleId: 2
+  Board:
+  - Size: 6
+    Row:
+    - C
+    - W
+    - A
+    - T
+    - E
+    - R
+  - Size: 6
+    Row:
+    - L
+    - R
+    - P
+    - A
+    - D
+    - R
+  - Size: 6
+    Row:
+    - O
+    - O
+    - C
+    - N
+    - A
+    - E
+  - Size: 6
+    Row:
+    - U
+    - C
+    - S
+    - U
+    - W
+    - V
+  - Size: 6
+    Row:
+    - D
+    - K
+    - T
+    - S
+    - N
+    - I
+  - Size: 6
+    Row:
+    - T
+    - R
+    - E
+    - E
+    - Y
+    - R
+  searchWords:
+  - word: Tree
+  - word: Water
+  - word: River
+  - word: Rock
+  - word: Sun
+  - word: Dawn
+  - word: Cloud
+  theme: 1
+  themeImage: {fileID: 21300000, guid: 44e1968f4ba688a42a20635e29a6c787, type: 3}
+  headingColor: {r: 0.31318974, g: 0.6764671, b: 0.9622642, a: 1}

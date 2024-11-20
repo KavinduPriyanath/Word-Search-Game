@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c6f8aeb2053894babe5221835f05a0, type: 3}
+  m_Name: Puzzle_1
+  m_EditorClassIdentifier: 
+  timeInSeconds: 0
+  Columns: 7
+  Rows: 7
+  puzzleId: 1
+  Board:
+  - Size: 7
+    Row:
+    - P
+    - A
+    - L
+    - A
+    - C
+    - E
+    - E
+  - Size: 7
+    Row:
+    - M
+    - G
+    - Y
+    - H
+    - Q
+    - D
+    - D
+  - Size: 7
+    Row:
+    - R
+    - R
+    - A
+    - Z
+    - U
+    - R
+    - H
+  - Size: 7
+    Row:
+    - O
+    - M
+    - A
+    - P
+    - E
+    - O
+    - E
+  - Size: 7
+    Row:
+    - C
+    - C
+    - M
+    - G
+    - S
+    - W
+    - R
+  - Size: 7
+    Row:
+    - K
+    - A
+    - F
+    - H
+    - T
+    - S
+    - O
+  - Size: 7
+    Row:
+    - I
+    - C
+    - A
+    - M
+    - P
+    - P
+    - E
+  searchWords:
+  - word: Map
+  - word: Quest
+  - word: Hero
+  - word: Camp
+  - word: Palace
+  - word: Rock
+  - word: Sword
+  theme: 0
+  themeImage: {fileID: 21300000, guid: ad3c2ee028a29ca479a354542518b9ab, type: 3}
+  headingColor: {r: 0.46431413, g: 0.9339623, b: 0.41852084, a: 1}

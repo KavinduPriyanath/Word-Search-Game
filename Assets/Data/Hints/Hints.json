@@ -1,0 +1,77 @@
+{
+    "hints": [
+      {
+        "id": 1,
+        "hintDictionary": {
+          "Map": 1,
+          "Quest": 2,
+          "Hero": 2,
+          "Camp": 2,
+          "Palace": 2,
+          "Sword": 2,
+          "Rock": 2
+        }
+      },
+      {
+        "id": 2,
+        "hintDictionary": {
+            "Tree": 1,
+            "Water": 2,
+            "River": 2,
+            "Rock": 2,
+            "Sun": 2,
+            "Dawn": 2,
+            "Cloud": 2
+        }
+      },
+      {
+        "id": 3,
+        "hintDictionary": {
+            "Sky": 1,
+            "Dusk": 2,
+            "Sun": 2,
+            "Glow": 2,
+            "Red": 2,
+            "Calm": 2,
+            "Haze": 2
+        }
+      },
+      {
+        "id": 4,
+        "hintDictionary": {
+            "Tree": 1,
+            "Water": 2,
+            "River": 2,
+            "Rock": 2,
+            "Sun": 2,
+            "Dawn": 2,
+            "Cloud": 2
+        }
+      },
+      {
+        "id": 5,
+        "hintDictionary": {
+            "Tree": 1,
+            "Water": 2,
+            "River": 2,
+            "Rock": 2,
+            "Sun": 2,
+            "Dawn": 2,
+            "Cloud": 2
+        }
+      },
+      {
+        "id": 6,
+        "hintDictionary": {
+            "Tree": 1,
+            "Water": 2,
+            "River": 2,
+            "Rock": 2,
+            "Sun": 2,
+            "Dawn": 2,
+            "Cloud": 2
+        }
+      }
+    ]
+  }
+  
