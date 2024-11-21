@@ -4,35 +4,37 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance { get; private set; }
 
-    public List<Color> colors = new List<Color>();
+    [Header("References")]
     [SerializeField] private GameObject highlighter;
     [SerializeField] private WordDetector wordDetector;
     [SerializeField] private GridCustomizer gridCustomizer;
-    public int colorIndex;
-
-    public int hintsCount = 3;
     [SerializeField] private GameObject hintButton;
     [SerializeField] private GameObject hintPanel;
     [SerializeField] private GameObject blur;
 
-    public List<Sprite> themes = new List<Sprite>();
-    
+    [Header("Shared Data")]
+    public List<Color> colors = new List<Color>();
     public List<BoardData> puzzleSet = new List<BoardData>();
+    [HideInInspector] public int colorIndex;
+    [HideInInspector] public int hintsCount = 3;
+    [HideInInspector] public int objectivesLeft = 7;
 
-    public int tempIndex = -1;
+    private int tempIndex = -1;
+    private Transform hintCount;
+    private Transform hintAds;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -42,35 +44,59 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        hintCount = hintButton.transform.Find("Count");
+        hintAds = hintButton.transform.Find("Ads");
+
         ShuffleColors();
         highlighter.SetActive(false);
+        if (PlayerData.Instance.lastPuzzleId >= 6) PlayerData.Instance.lastPuzzleId = 0;
         gridCustomizer.GeneratePuzzle(puzzleSet[PlayerData.Instance.lastPuzzleId]);
 
     }
 
-    private void Update()
+    public void ActiveHints()
     {
+        if (hintsCount > 0)
+        {
+            hintCount.gameObject.SetActive(true);
+            hintAds.gameObject.SetActive(false);
+        }
+        else
+        {
+            hintCount.gameObject.SetActive(false);
+            hintAds.gameObject.SetActive(true);
+        }
+        hintCount.GetChild(0).gameObject.GetComponent<TMP_Text>().text = hintsCount.ToString();
     }
 
     public void UseHint()
     {
         if (hintsCount > 0)
         {
-            LevelManager.Instance.ShowHint(hintsCount);
+            ShowHint();
             hintsCount--;
-            hintButton.transform.Find("Count").GetChild(0).gameObject.GetComponent<TMP_Text>().text = hintsCount.ToString();
+            PlayerData.Instance.SavePuzzleData(PlayerData.Instance.lastPuzzleId, hintsCount);
+            hintCount.GetChild(0).gameObject.GetComponent<TMP_Text>().text = hintsCount.ToString();
             if (hintsCount == 0)
             {
-                hintButton.transform.Find("Count").gameObject.SetActive(false);
-                hintButton.transform.Find("Ads").gameObject.SetActive(true);
+                hintCount.gameObject.SetActive(false);
+                hintAds.gameObject.SetActive(true);
             }
-            //ShowHint
         }
         else
         {
-            //ShowAd Popup
             hintPanel.SetActive(true);
             blur.SetActive(true);
+        }
+    }
+
+    private void ShowHint()
+    {
+        if (LevelManager.Instance.hints.Count > 0)
+        {
+            GameObject hintObj = LevelManager.Instance.cells[LevelManager.Instance.hints.First().Value].transform.Find("Hint").gameObject;
+            hintObj.SetActive(true);
+            LevelManager.Instance.hints.Remove(LevelManager.Instance.hints.First().Key);
         }
     }
 
@@ -83,8 +109,7 @@ public class GameManager : MonoBehaviour
 
         tmpText.text += " " + letter;
 
-        //float newWidth = tmpText.preferredWidth / 2;
-        float newWidth = 25f;
+        float newWidth = 30f;
 
         RectTransform rectTransform = highlighter.GetComponent<RectTransform>();
         if (rectTransform != null)
@@ -107,7 +132,7 @@ public class GameManager : MonoBehaviour
             if (objective.ToUpper() == word.ToUpper())
             {
                 tempIndex = i;
-                LevelManager.Instance.objectivesLeft--;
+                objectivesLeft--;
                 LevelManager.Instance.hints.Remove(objective);
                 return true;
             }
@@ -127,10 +152,8 @@ public class GameManager : MonoBehaviour
             textBox = box.Find("Row_2").GetChild(tempIndex - 4).gameObject;
 
 
-
         Vector3 endPosition = textBox.transform.position;
         Vector3[] letterPositions = GetLetterPositions(textBox.GetComponent<TMP_Text>());
-        Debug.Log(letterPositions.Length + " letters && " + wordDetector.selectedCells.Count + " cells");
 
         tempIndex = -1;
 
@@ -145,43 +168,35 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //LevelManager.Instance.objectives.RemoveAt(tempIndex);
         textBox.GetComponent<TMP_Text>().color = Color.gray;
 
-        if (LevelManager.Instance.objectivesLeft == 0)
+        if (GameManager.Instance.objectivesLeft == 0)
             StartCoroutine(LevelManager.Instance.OpenWinMenu());
     }
 
     private Vector3[] GetLetterPositions(TMP_Text textComponent)
     {
-        // Force text to generate geometry
         textComponent.ForceMeshUpdate();
 
-        // Get the text info
         TMP_TextInfo textInfo = textComponent.textInfo;
         int characterCount = textInfo.characterCount;
 
-        // Initialize the array to store positions
         Vector3[] letterPositions = new Vector3[characterCount];
 
         for (int i = 0; i < characterCount; i++)
         {
             TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
 
-            // Only consider visible characters
             if (!charInfo.isVisible)
                 continue;
 
-            // Get the center position of the character
             Vector3 bottomLeft = charInfo.bottomLeft;
             Vector3 topRight = charInfo.topRight;
             letterPositions[i] = (bottomLeft + topRight) / 2f;
 
-            // Convert from local space to world space
             letterPositions[i] = textComponent.transform.TransformPoint(letterPositions[i]);
         }
 
-        // Log or use the positions as needed
         Debug.Log("Letter positions retrieved.");
         return letterPositions;
     }
@@ -195,20 +210,14 @@ public class GameManager : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            // Calculate the fraction of time passed
+
             float t = elapsedTime / duration;
-
-            // Move the object smoothly
             letter.transform.position = Vector3.Lerp(startPos, endPos, t);
-
-            // Increment elapsed time
             elapsedTime += Time.deltaTime;
 
-            // Wait for the next frame
             yield return null;
         }
 
-        // Ensure the object ends exactly at the target position
         letter.transform.position = endPos;
         letter.gameObject.SetActive(false);   
     }
@@ -217,9 +226,18 @@ public class GameManager : MonoBehaviour
     {
         highlighter.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = "";
         highlighter.GetComponent<RectTransform>().sizeDelta = new Vector2(64, 64);
-        highlighter.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -820);
+        highlighter.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -660);
         highlighter.SetActive(false);
     }
+
+    public void GetRewarded()
+    {
+        hintsCount += 3;
+        hintCount.gameObject.SetActive(true);
+        hintAds.gameObject.SetActive(false);
+        hintCount.GetChild(0).gameObject.GetComponent<TMP_Text>().text = hintsCount.ToString();
+    }
+
     public void ShuffleColors()
     {
         for (int i = colors.Count - 1; i > 0; i--)

@@ -6,13 +6,11 @@ using System;
 
 public class AdsManager : MonoBehaviour
 {
-    public string appId = "ca-app-pub-3940256099942544~3347511713";
+    private string bannerId = "ca-app-pub-3940256099942544/6300978111";
+    private string rewardId = "ca-app-pub-3940256099942544/5224354917";
 
-    string bannerId = "ca-app-pub-3940256099942544/6300978111";
-    string rewardId = "ca-app-pub-3940256099942544/5224354917";
-
-    BannerView bannerView;
-    RewardedAd rewardAd;
+    private BannerView bannerView;
+    private RewardedAd rewardAd;
 
     private void Start()
     {
@@ -27,11 +25,14 @@ public class AdsManager : MonoBehaviour
 
     private void LoadBannerAd()
     {
+        if (bannerView != null)
+        {
+            bannerView.Destroy();
+            bannerView = null;
+        }
 
         bannerView = new BannerView(bannerId, AdSize.IABBanner, AdPosition.Bottom);
-
         LoadBanner();
-
         var adReq = new AdRequest();
         adReq.Keywords.Add("unity-admob-sample");
         Debug.Log("loading banner");
@@ -80,15 +81,6 @@ public class AdsManager : MonoBehaviour
         };
     }
 
-    private void DestroyBanner()
-    {
-        if (bannerView != null)
-        {
-            bannerView.Destroy();
-            bannerView = null;
-        }
-    }
-
     public void LoadRewardedAds()
     {
         if (rewardAd != null)
@@ -108,7 +100,6 @@ public class AdsManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log("Rewarded loaded");
             rewardAd = ad;
             RewardedAdEvents(rewardAd);
         });
@@ -118,7 +109,7 @@ public class AdsManager : MonoBehaviour
             rewardAd.Show((Reward reward) =>
             {
                 Debug.Log("Rewarded");
-                GameManager.Instance.hintsCount += 3;
+                GameManager.Instance.GetRewarded();
             });
         }
         else

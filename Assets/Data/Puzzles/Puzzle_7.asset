@@ -14,79 +14,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeInSeconds: 0
   Columns: 7
-  Rows: 8
+  Rows: 6
   puzzleId: 7
   Board:
-  - Size: 8
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - H
+    - T
+    - U
+    - I
+    - A
+    - O
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - M
+    - I
+    - B
+    - T
+    - O
+    - D
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - L
+    - L
+    - J
+    - R
+    - V
+    - P
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - A
+    - E
+    - B
+    - U
+    - R
+    - I
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - C
+    - E
+    - A
+    - L
+    - T
+    - N
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - K
+    - M
+    - L
+    - B
+    - R
+    - K
+  - Size: 6
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - R
+    - O
+    - S
+    - E
+    - A
+    - G
   searchWords:
   - word: Art
   - word: Tile

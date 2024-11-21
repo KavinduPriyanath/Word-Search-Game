@@ -14,79 +14,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeInSeconds: 0
   Columns: 7
-  Rows: 8
+  Rows: 7
   puzzleId: 6
   Board:
-  - Size: 8
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - E
+    - G
+    - A
+    - M
+    - Z
+    - Y
+    - O
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - L
+    - R
+    - U
+    - O
+    - M
+    - P
+    - R
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - O
+    - G
+    - A
+    - R
+    - D
+    - M
+    - C
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - O
+    - R
+    - J
+    - C
+    - L
+    - H
+    - R
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - C
+    - Y
+    - J
+    - G
+    - I
+    - S
+    - F
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-  - Size: 8
+    - P
+    - O
+    - N
+    - D
+    - J
+    - I
+    - L
+  - Size: 7
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - V
+    - Q
+    - K
+    - J
+    - U
+    - W
+    - E
   searchWords:
   - word: Elf
   - word: Mage

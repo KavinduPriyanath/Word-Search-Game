@@ -6,6 +6,18 @@ using UnityEngine;
 [CreateAssetMenu]
 public class BoardData : ScriptableObject
 {
+    public float timeInSeconds;
+    public int Columns = 0;
+    public int Rows = 0;
+
+    public int puzzleId;
+    public BoardRow[] Board;
+    public List<SearchingWord> searchWords = new List<SearchingWord>();
+    public Themes theme;
+    public Sprite themeImage;
+    public Color headingColor;
+    public Dictionary<string, int> hints = new Dictionary<string, int>();
+
     [System.Serializable]
     public class SearchingWord
     {
@@ -20,8 +32,8 @@ public class BoardData : ScriptableObject
 
         public BoardRow() { }
 
-        public BoardRow(int size) 
-        { 
+        public BoardRow(int size)
+        {
             CreateRow(size);
         }
 
@@ -34,25 +46,12 @@ public class BoardData : ScriptableObject
 
         public void ClearRow()
         {
-            for (int i=0; i < Size; i++)
+            for (int i = 0; i < Size; i++)
             {
                 Row[i] = " ";
             }
         }
     }
-
-    public float timeInSeconds;
-    public int Columns = 0;
-    public int Rows = 0;
-
-    public int puzzleId;
-    public BoardRow[] Board;
-    public List<SearchingWord> searchWords = new List<SearchingWord>();
-    public Themes theme;
-    public Sprite themeImage;
-    public Color headingColor;
-    public Dictionary<string, int> hints = new Dictionary<string, int>();
-
 
     public void ClearWithEmptyStrings()
     {

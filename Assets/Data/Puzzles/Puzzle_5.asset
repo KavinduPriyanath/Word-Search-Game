@@ -19,74 +19,74 @@ MonoBehaviour:
   Board:
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - A
+    - R
+    - V
+    - H
+    - L
+    - W
+    - O
+    - U
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - Q
+    - H
+    - O
+    - M
+    - E
+    - K
+    - Y
+    - K
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - M
+    - U
+    - N
+    - A
+    - H
+    - I
+    - G
+    - H
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - L
+    - F
+    - O
+    - K
+    - P
+    - Z
+    - Q
+    - D
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - A
+    - O
+    - O
+    - T
+    - L
+    - E
+    - H
+    - Q
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - C
+    - D
+    - M
+    - R
+    - G
+    - V
+    - F
+    - P
   - Size: 8
     Row:
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
-    - ' '
+    - T
+    - D
+    - A
+    - R
+    - K
+    - E
+    - E
+    - M
   searchWords:
   - word: Home
   - word: High
@@ -97,4 +97,4 @@ MonoBehaviour:
   - word: Eve
   theme: 4
   themeImage: {fileID: 21300000, guid: e36c782c6c5a6eb4089aae12428ece34, type: 3}
-  headingColor: {r: 0.9433962, g: 0.918766, b: 0.36044857, a: 1}
+  headingColor: {r: 0.6037736, g: 0.5905276, b: 0.3218227, a: 1}

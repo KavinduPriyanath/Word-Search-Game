@@ -7,22 +7,18 @@ using UnityEngine.UI;
 
 public class GridCustomizer : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GridLayoutGroup gridLayout;
-    private BoardData boardData;
     [SerializeField] private GameObject cellPrefab;
 
     private float gridWidth;
+    private BoardData boardData;
+    private int columnCount = 7; 
+    private int rowCount;
 
-    public int columnCount = 7; 
-    public int rowCount;       
-
-    public float minSpacing = 1f; 
-    public float maxSpacing = 6f; 
-
-    private void Start()
-    {
-        
-    }
+    [Header("Data")]
+    [SerializeField] private float minSpacing = 1f;
+    [SerializeField] private float maxSpacing = 6f; 
 
     public void GeneratePuzzle(BoardData puzzle)
     {
@@ -30,6 +26,16 @@ public class GridCustomizer : MonoBehaviour
         UpdateGridLayout();
         GenerateGrid();
         LevelManager.Instance.PopulateLetterBox(boardData);
+        ResizeGrid();
+    }
+
+    private void ResizeGrid()
+    {
+        Transform grid = gridLayout.transform.parent;
+        float totalHeight = (gridLayout.cellSize.y * boardData.Rows) + (gridLayout.spacing.y * (boardData.Rows - 1)) + 40; 
+        Vector2 currentSize = grid.GetComponent<RectTransform>().sizeDelta;
+        currentSize.y = totalHeight;
+        grid.GetComponent<RectTransform>().sizeDelta = currentSize;
     }
 
     private void GenerateGrid()
@@ -50,16 +56,9 @@ public class GridCustomizer : MonoBehaviour
             {
                 GameObject cell = Instantiate(cellPrefab, gridLayout.transform);
                 cell.transform.Find("Letter").GetComponent<TMP_Text>().text = boardData.Board[j].Row[i];
-                cell.GetComponent<BlockData>().id = i * columnCount + j;
                 LevelManager.Instance.cells.Add(cell);  
-
             }
         }
-    }
-
-    private void GenerateWordHolder()
-    {
-
     }
 
     private void UpdateGridLayout()
@@ -87,14 +86,10 @@ public class GridCustomizer : MonoBehaviour
     {
         float totalUsedSpace = cellSize * columnCount;
         float remainingSpace = gridWidth - totalUsedSpace;
-
-        // Calculate the spacing between cells based on the remaining space
-        float spacing = remainingSpace / (columnCount - 1);  // Subtract 1 because there are columnCount - 1 gaps between cells
-
-        // Ensure that the spacing is within the specified range
+        float spacing = remainingSpace / (columnCount - 1);  
         spacing = Mathf.Clamp(spacing, minSpacing, maxSpacing);
 
-        return spacing; // Return the calculated spacing
+        return spacing; 
     }
 
     private float GetGridWidth()
